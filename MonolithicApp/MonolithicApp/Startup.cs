@@ -29,10 +29,10 @@ namespace MonolithicApp
         {
             services.AddControllers();
 
-            services.AddSingleton<CustomerService>();
-            services.AddSingleton<CustomerRepository>();
-            services.AddSingleton<OrderService>();
-            services.AddSingleton<OrderRepository>();
+            services.AddSingleton<ICustomerService, CustomerService>();
+            services.AddSingleton<ICustomerRepository, CustomerRepository>();
+            services.AddSingleton<IOrderService, OrderService>();
+            services.AddSingleton<IOrderRepository, OrderRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
