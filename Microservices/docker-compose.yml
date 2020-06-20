@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  orderservice:
+    build: ./Orderservice
+    image: microservices/orderservice:v1
+    ports:
+     - "5000:80"
+    links:
+     - customerservice
+  customerservice:
+   build: ./CustomerService
+   image: microservices/customerservice
+   ports:
+    - "5001:8080"

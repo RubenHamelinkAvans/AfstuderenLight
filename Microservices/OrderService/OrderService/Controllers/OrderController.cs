@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using OrderService.Domain;
 using OrderService.Services;
 
@@ -10,10 +11,12 @@ namespace OrderService.Controllers
     public class OrderController : Controller
     {
         private IOrderService orderService;
+        private ILogger<OrderController> logger;
 
-        public OrderController(IOrderService orderService)
+        public OrderController(IOrderService orderService, ILogger<OrderController> logger)
         {
             this.orderService = orderService;
+            this.logger = logger;
         }
 
         [HttpGet]
@@ -25,6 +28,7 @@ namespace OrderService.Controllers
         [HttpPost]
         public string Place(Order order)
         {
+            logger.LogInformation($"Placing order {order.Item}");
             return orderService.PlaceOrder(order);
         }
     }
