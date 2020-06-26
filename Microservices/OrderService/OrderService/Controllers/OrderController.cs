@@ -22,13 +22,14 @@ namespace OrderService.Controllers
         [HttpGet]
         public List<Order> Get(string customerId)
         {
+			logger.LogInformation($"Getting orders for customer {customerId}");
             return orderService.GetOrders(customerId);
         }
 
         [HttpPost]
         public string Place(Order order)
         {
-            logger.LogInformation($"Placing order {order.Item}");
+            logger.LogInformation($"Placing order {order.Item} for {order.CustomerId}");
             return orderService.PlaceOrder(order);
         }
     }

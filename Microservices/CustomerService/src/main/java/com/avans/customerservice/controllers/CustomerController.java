@@ -5,10 +5,7 @@ import com.avans.customerservice.services.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/Customer")
@@ -29,8 +26,8 @@ public class CustomerController {
     }
 
     @PostMapping
-    public String create(Customer customer){
-        log.info("Creating customer " + customer);
+    public String create(@RequestBody Customer customer){
+        log.info("Creating customer " + customer.getName());
         return customerService.createCustomer(customer);
     }
 
